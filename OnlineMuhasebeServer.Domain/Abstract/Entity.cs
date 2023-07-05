@@ -8,7 +8,7 @@ namespace OnlineMuhasebeServer.Domain.Abstract
 {
     public abstract class EntityBase
     {
-        public string ID { get; set; }
+        public string Id { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
     }

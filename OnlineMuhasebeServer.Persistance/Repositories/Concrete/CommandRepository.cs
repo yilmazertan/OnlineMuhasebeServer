@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineMuhasebeServer.Application
+namespace OnlineMuhasebeServer.Persistance.Repositories.Concrete
 {
-    internal class Class1
+    internal class CommandRepository
     {
     }
 }

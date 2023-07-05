@@ -1,13 +1,13 @@
-﻿using OnlineMuhasebeServer.Domain.Abstract;
+﻿using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineMuhasebeServer.Domain.AppEntities
+namespace OnlineMuhasebeServer.Application.Features.Appfeatures.CompanyFeatures.Commands.CreateCompany
 {
-    public sealed class Company:Entity
+    public sealed class CreateCompanyRequest:IRequest<CreateCompanyResponse>
     {
         public string Name { get; set; }
         public string Address { get; set; }

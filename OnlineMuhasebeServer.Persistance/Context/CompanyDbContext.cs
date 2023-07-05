@@ -12,7 +12,7 @@ namespace OnlineMuhasebeServer.Persistance.Context
     public sealed class CompanyDbContext:DbContext
     {
         private string ConnectionString = "";
-        public CompanyDbContext(Company company = null)
+        public CompanyDbContext(Company? company)
         {
             if (company != null)
             {
@@ -45,5 +45,10 @@ namespace OnlineMuhasebeServer.Persistance.Context
         {
            optionsBuilder.UseSqlServer(ConnectionString);
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) =>
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AssemblyReference).Assembly);
+
+        
     }
 }

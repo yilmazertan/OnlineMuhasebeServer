@@ -3,13 +3,29 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using OnlineMuhasebeServer.Persistance.Context;
 using OnlineMuhasebeServer.Presentation;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using OnlineMuhasebeServer.Domain.AppEntities.Identity;
+using OnlineMuhasebeServer.Application.Services.AppService;
+using OnlineMuhasebeServer.Persistance.Services.AppService;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddMediatR(typeof(OnlineMuhasebeServer.Application.AssemblyReference).Assembly);
+builder.Services.AddAutoMapper(typeof(OnlineMuhasebeServer.Persistance.AssemblyReference).Assembly);
+
+builder.Services.AddScoped<ICompanyService, CompanyService>();
+
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(AssemblyReference).Assembly);
+
+
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
